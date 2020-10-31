@@ -50,19 +50,20 @@ public:
         if (num.length() == 0) {
             return 0;
         }
-        //num = (num[0] == '+' || num[0] == '-') ? num.erase(1, num.find_first_not_of('0', num.size()-1)) :
-        //    num.erase(0, num.find_first_not_of('0', num.size()-1));
+        num = (num[0] == '+' || num[0] == '-') ? num.erase(1, num.find_first_not_of('0', num.size()-1)) :
+            num.erase(0, num.find_first_not_of('0', num.size()));
         len = num.length();
         cout << "|" << num << "|" << endl;
         cout << "len=" << len << endl;
-        //if (len == 0) {
-        //    return 0;
-        //} else if (len >= 11) { // out of range for sure
-        //    if (detect_neg_sign >= 0) {
-        //        return INT_MIN;
-        //    }
-        //    return INT_MAX;
-        //}
+        if (len == 0) {
+            return 0;
+		}
+        if (len >= 11) { // out of range for sure
+          if (num[0] == '-') {
+              return INT_MIN;
+          }
+          return INT_MAX;
+        }
         ret = stol(num);
         cout << "num = '" << ret << "'" << endl;
         if (ret > INT_MAX) {
