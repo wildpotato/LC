@@ -50,8 +50,10 @@ public:
         if (num.length() == 0) {
             return 0;
         }
-        num = (num[0] == '+' || num[0] == '-') ? num.erase(1, num.find_first_not_of('0', num.size()-1)) :
-            num.erase(0, num.find_first_not_of('0', num.size()));
+        // trim leading 0's
+		int trim_start = (num[0] == '+' || num[0] == '-') ? 1 : 0;
+		int trim_end = num.find_first_not_of('0', trim_start);
+		num = num.erase(trim_start, trim_end - trim_start);
         len = num.length();
         cout << "|" << num << "|" << endl;
         cout << "len=" << len << endl;
@@ -65,7 +67,7 @@ public:
           return INT_MAX;
         }
         ret = stol(num);
-        cout << "num = '" << ret << "'" << endl;
+        cout << "ret = '" << ret << "'" << endl;
         if (ret > INT_MAX) {
             return INT_MAX;
         } else if (ret < INT_MIN) {
@@ -92,6 +94,7 @@ int main()
     assert(soln.myAtoi("  0000000000012345678") == 12345678);
     assert(soln.myAtoi("  -0000000000012345678") == -12345678);
     assert(soln.myAtoi("20000000000000000000") == INT_MAX);
-    cout << "Successful\n";
+    assert(soln.myAtoi("   +0a32") == 0);
+	cout << "Successful\n";
     return 0;
 }
