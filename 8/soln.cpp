@@ -4,6 +4,7 @@ class Solution {
 public:
     int myAtoi(string s) {
 		int i = 0, sign = 0;
+		bool out_of_range = false;
 		long long res = 0;
 		while (isspace(s[i])) {
 			++i;
@@ -18,21 +19,24 @@ public:
 		for (; i < s.length(); ++i) {
 			if (isdigit(s[i])) {
 				res = res * 10 + s[i]-'0';
-				cout << "|i = " << i << " RES=" << res << "|";
+				if (res > INT_MAX) {
+					if (sign < 0) {
+						res = INT_MIN;
+					} else {
+						res = INT_MAX;
+					}
+					out_of_range = true;
+					break;
+				}
 			} else {
 				break;
 			}
 		}
-		if (res > INT_MAX) {
-			if (sign < 0) {
-				res = INT_MIN;
-			} else {
-				res = INT_MAX;
-			}
+		if (out_of_range) {
+			return res;
 		} else {
 			res = (sign < 0) ? -1 * res : res;
 		}
-		cout << "res = " << res << endl;
 		return res;
 	}
 };
