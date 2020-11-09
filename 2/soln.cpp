@@ -20,7 +20,7 @@ struct ListNode {
         ListNode *tmp = this;
 		while (tmp->next) {
             if (!other->next) {
-                return false;
+				return false;
             }
             if (tmp->val != other->val) {
                 return false;
@@ -82,7 +82,7 @@ void test2() {
 void test3() {
     ListNode *l1 = new ListNode(2, new ListNode(4, new ListNode(3)));
 	ListNode *l2 = new ListNode(5, new ListNode(6, new ListNode(4)));
-	ListNode *ret = new ListNode(8, new ListNode(0, new ListNode(7)));
+	ListNode *ret = new ListNode(7, new ListNode(0, new ListNode(8)));
     Solution soln;
     assert(soln.addTwoNumbers(l1, l2)->listEqual(ret));
 	delete l1, l2, ret;
@@ -94,7 +94,8 @@ void test4() {
     ListNode *l2 = new ListNode(9, new ListNode(9, new ListNode(9,
     new ListNode(9))));
     ListNode *ret = new ListNode(8, new ListNode(9, new ListNode(9,
-    new ListNode(9, new ListNode(0, new ListNode(0, new ListNode(1)))))));
+    new ListNode(9, new ListNode(0, new ListNode(0, new ListNode(0,
+					new ListNode(1))))))));
     Solution soln;
     assert(soln.addTwoNumbers(l1, l2)->listEqual(ret));
     delete l1, l2, ret;
@@ -102,5 +103,8 @@ void test4() {
 
 int main() {
 	test1();
+	test2();
+	test3();
+	test4();
 	cout << "Successful" << endl;
 }
