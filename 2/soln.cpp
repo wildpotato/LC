@@ -87,6 +87,19 @@ void test3() {
     assert(soln.addTwoNumbers(l1, l2)->listEqual(ret));
 	delete l1, l2, ret;
 }
+
+void test4() {
+    ListNode *l1 = new ListNode(9, new ListNode(9, new ListNode(9,
+    new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9)))))));
+    ListNode *l2 = new ListNode(9, new ListNode(9, new ListNode(9,
+    new ListNode(9))));
+    ListNode *ret = new ListNode(8, new ListNode(9, new ListNode(9,
+    new ListNode(9, new ListNode(0, new ListNode(0, new ListNode(1)))))));
+    Solution soln;
+    assert(soln.addTwoNumbers(l1, l2)->listEqual(ret));
+    delete l1, l2, ret;
+}
+
 int main() {
 	test1();
 	cout << "Successful" << endl;
