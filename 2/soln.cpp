@@ -30,6 +30,15 @@ struct ListNode {
         }
         return other->next == nullptr;
     }
+
+    void printList() {
+        ListNode *tmp = this;
+        while (tmp) {
+            cout << tmp->val << "->";
+            tmp = tmp->next;
+        }
+        cout << "nullptr" << endl;
+    }
 };
 
 class Solution {
@@ -101,10 +110,23 @@ void test4() {
     delete l1, l2, ret;
 }
 
+void test5() {
+    ListNode *l1 = new ListNode(1, new ListNode(2, new ListNode(3,
+                    new ListNode(4))));
+    ListNode *l2 = new ListNode(1, new ListNode(1));
+    ListNode *ret = new ListNode(4, new ListNode(3, new ListNode(3,
+                    new ListNode(2))));
+    Solution soln;
+    soln.addTwoNumbers(l1,l2)->printList();
+    //assert(soln.addTwoNumbers(l1, l2)->listEqual(ret));
+    delete l1, l2, ret;
+}
+
 int main() {
 	test1();
 	test2();
 	test3();
 	test4();
+    test5();
 	cout << "Successful" << endl;
 }
