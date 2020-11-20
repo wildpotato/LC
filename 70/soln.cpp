@@ -5,23 +5,12 @@ public:
     int climbStairs(int n) {
 		vector<int> ways;
 		ways.resize(n+1, -1);
-		return countWays(n, ways);
-    }
-
-	int countWays(int n, vector<int> ways) {
-		if (n < 0) {
-			return 0;
+    	ways[0] = 1;
+		ways[1] = 1;
+		for (int i = 2; i <= n; i++) {
+			ways[i] = ways[i-1] + ways[i-2];
 		}
-		else if (n == 0) {
-			return 1;
-		}
-		else if (ways[n] != -1) {
-			return ways[n];
-		}
-		else {
-			ways[n] = countWays(n-1, ways) + countWays(n-2, ways);
-			return ways[n];
-		}
+		return ways[n];
 	}
 };
 
