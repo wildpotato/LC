@@ -47,25 +47,25 @@ public:
         if (!l1 && !l2) return nullptr;
         else if (!l1) return l2;
         else if (!l2) return l1;
-        int rest = 0;
+        int carry = 0;
         auto ret = l1;
         auto l1end = l1;
         while (l1 || l2) {
             if (l1 && l2) {
-                l1->val += l2->val + rest;
+                l1->val += l2->val + carry;
             } else if (l2) {
-                l1end->next = new ListNode(l2->val + rest);
+                l1end->next = new ListNode(l2->val + carry);
                 l1 = l1end->next;
-            } else l1->val += rest;
+            } else l1->val += carry;
             if (l1->val > 9) {
-                rest = 1;
+                carry = 1;
                 l1->val -= 10;
-            } else rest = 0;
+            } else carry = 0;
             l1end = l1;
             l1 = l1->next;
             if (l2) l2 = l2->next;
         }
-        if (rest == 1) l1end->next = new ListNode(1);
+        if (carry == 1) l1end->next = new ListNode(1);
         return ret;
     }
 };
@@ -114,11 +114,11 @@ void test5() {
     ListNode *l1 = new ListNode(1, new ListNode(2, new ListNode(3,
                     new ListNode(4))));
     ListNode *l2 = new ListNode(1, new ListNode(1));
-    ListNode *ret = new ListNode(4, new ListNode(3, new ListNode(3,
-                    new ListNode(2))));
+    ListNode *ret = new ListNode(2, new ListNode(3, new ListNode(3,
+                    new ListNode(4))));
     Solution soln;
-    soln.addTwoNumbers(l1,l2)->printList();
-    //assert(soln.addTwoNumbers(l1, l2)->listEqual(ret));
+    //soln.addTwoNumbers(l1,l2)->printList();
+    assert(soln.addTwoNumbers(l1, l2)->listEqual(ret));
     delete l1, l2, ret;
 }
 
