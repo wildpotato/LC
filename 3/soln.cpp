@@ -10,7 +10,9 @@
  * Choose which version to compile, leave the version we want uncommented and comment
  * out every other version (distinguish by time complexity)
  */
-#define Oofn3
+//#define Oofn3
+#define Oofn1
+
 
 //var lengthOfLongestSubstring = function(s) {
 //  let leftWindow = 0;
@@ -81,6 +83,22 @@ public:
 		return bestSoFar;
     }
 
+};
+#endif
+#ifdef Oofn1
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        vector<int> dict(256, -1);
+        int maxLen = 0, start = -1;
+        for (int i = 0; i != s.length(); ++i) {
+            if (dict[s[i]] > start)
+                start = dict[s[i]];
+            dict[s[i]] = i;
+            maxLen = max(maxLen, i - start);
+        }
+        return maxLen;
+    }
 };
 #endif
 
