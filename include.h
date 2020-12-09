@@ -11,6 +11,9 @@
 #include <queue>
 #include <map>
 
+/* STL algorithms such as sort(), etc */
+#include <algorithm>
+
 /* limits such as INT_MIN, INT_MAX, etc */
 #include <climits>
 
