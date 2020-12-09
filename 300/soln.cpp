@@ -3,7 +3,21 @@
 class Solution {
 public:
     int lengthOfLIS(vector<int>& nums) {
-        return 4;
+		size_t n = nums.size();
+		int ret = 0;
+		vector<int> dp(n + 1, 1);
+		if (n == 0) {
+			return 0;
+		}
+		for (int i = 0; i < n; ++i) {
+			for (int j = 0; j < i; ++j) {
+				if (nums[j] < nums[i]) {
+					dp[i] = max(dp[i], dp[j] + 1);
+				}
+			}
+			ret = max(ret, dp[i]);
+		}
+        return ret;
     }
 };
 
