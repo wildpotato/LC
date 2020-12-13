@@ -12,7 +12,7 @@
  * is equal to the length of the LIS and that solves this problem!
  *
  * The runtime complexity is O(n logk) where n is the number of cards and k is the number of piles
- * The space complexity is approximately O(n)
+ * The space complexity is O(n)
  *
  */
 
@@ -26,24 +26,25 @@
 class Solution {
 public:
     int lengthOfLIS(vector<int>& nums) {
-        vector<int> tails(nums.size(), 0);
-        int size = 0;
-
-        for(int x: nums) {
-            int i = 0, j = size;
-            while(i < j) {
-                int m = (i + j) / 2;
-                if(tails[m] < x) {
-                    i = m + 1;
-                } else {
-                    j = m;
-                }
-            }
-            tails[i] = x;
-            if(i == size) ++size;
-        }
-
-        return size;
+		vector<int> topCards(nums.size(), 0);
+		int numOfPiles = 0;
+		for (int num : nums) {
+			int low = 0, high = numOfPiles;
+			while (low < high) {
+				int mid = (low + high) / 2;
+				/* need to watch out for the "=" case */
+				if (num > topCards[mid]) {
+					low = mid + 1;
+				} else {
+					high = mid;
+				}
+			}
+			topCards[low] = num;
+			if (low == numOfPiles) {
+				++numOfPiles;
+			}
+		}
+		return numOfPiles;
     }
 };
 
@@ -91,6 +92,8 @@ void test3() {
 
 int main() {
     test1();
+	test2();
+	test3();
     cout << "Successful\n";
     return 0;
 }
