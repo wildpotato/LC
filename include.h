@@ -37,6 +37,15 @@ using namespace std;
 //    return nullptr;
 //}();
 
+/* some commonly defined structs */
+struct ListNode {
+    int val;
+    ListNode *next;
+    ListNode() : val(0), next(nullptr) {}
+    ListNode(int x) : val(x), next(nullptr) {}
+    ListNode(int x, ListNode *next) : val(x), next(next) {}
+};
+
 /* some common utility functions */
 template <typename T>
 bool isArrayEqual(vector<T> a, vector<T> b) {
