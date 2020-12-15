@@ -21,6 +21,9 @@
 /* types such as isdigit, isalphanumeric, etc */
 #include <cctype>
 
+/* some functions such as iota, accumulate, etc */
+#include <numeric>
+
 /* use std namespace so we don't need to type std:: */
 using namespace std;
 
@@ -46,4 +49,13 @@ bool isArrayEqual(vector<T> a, vector<T> b) {
         }
     }
     return true;
+}
+
+template <typename T>
+void printArray(vector<T> a) {
+    cout << "---------------------------------------------\n";
+    for (size_t i = 0; i < a.size(); ++i) {
+        cout << a[i] << " ";
+    }
+    cout << "\n---------------------------------------------";
 }
