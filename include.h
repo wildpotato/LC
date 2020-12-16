@@ -38,6 +38,7 @@ using namespace std;
 //}();
 
 /* some commonly defined structs */
+/* definition for singly linked list */
 struct ListNode {
     int val;
     ListNode *next;
@@ -45,6 +46,20 @@ struct ListNode {
     ListNode(int x) : val(x), next(nullptr) {}
     ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
+
+bool isListNodeEqual(ListNode *a, ListNode *b) {
+    while (a || b) {
+        if (a == nullptr || b == nullptr) {
+            return false;
+        }
+        if (a->val != b->val) {
+            return false;
+        }
+        a = a->next;
+        b = b->next;
+    } // while
+    return true;
+}
 
 /* some common utility functions */
 template <typename T>
