@@ -13,17 +13,45 @@
 class Solution {
 public:
     ListNode* deleteDuplicates(ListNode* head) {
-		if (head == nullptr || head->next == nullptr) {
-			return head;
-		}
-		ListNode *curr_node = head, *tmp_node;
-		int curr_val = head->value;
+        if (head == nullptr) return head;
+		ListNode *curr_node = head, *next_next;
 		while (curr_node->next) {
-			if (curr_node->next->val == curr_val) {
-				tmp_node = curr_node->next;
-				curr_node->next = tmp_node->next;
+			if (curr_node->next->val == curr_node->val) {
+				next_next = curr_node->next->next;
+				curr_node->next = next_next;
 			} else {
-				curr_val = curr_node->val;
+                curr_node = curr_node->next;
 			}
+        } // while
+        return head;
     }
 };
+
+void test1() {
+    ListNode *input = new ListNode(1, new ListNode(1, new ListNode(2)));
+    ListNode *output = new ListNode(1, new ListNode(2));
+    Solution soln;
+    assert(isListNodeEqual(soln.deleteDuplicates(input), output));
+}
+
+void test2() {
+    ListNode *input = new ListNode(1, new ListNode(1, new ListNode(2, \
+                      new ListNode(3, new ListNode(3)))));
+    ListNode *output = new ListNode(1, new ListNode(2, new ListNode(3)));
+    Solution soln;
+    assert(isListNodeEqual(soln.deleteDuplicates(input), output));
+}
+
+void test3() {
+    ListNode *input = nullptr;
+    ListNode *output = nullptr;
+    Solution soln;
+    assert(isListNodeEqual(soln.deleteDuplicates(input), output));
+}
+
+int main() {
+    test1();
+    test2();
+    cout << "Successful\n";
+    return 0;
+}
