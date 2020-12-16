@@ -62,12 +62,27 @@ bool isListNodeEqual(ListNode *a, ListNode *b) {
 }
 
 /* some common utility functions */
+/* check if the two array are identical */
 template <typename T>
 bool isArrayEqual(vector<T> a, vector<T> b) {
     if (a.size() != b.size()) {
         return false;
     }
     for (int i = 0; i < a.size(); ++i) {
+        if (a[i] != b[i]) {
+            return false;
+        }
+    }
+    return true;
+}
+
+/* check if the first n elements of the two array are equal */
+template <typename T>
+bool isArrayEqual(vector<T> a, vector<T> b, int n) {
+    if (n < 0 || a.size() < n || b.size() < n) {
+        return false;
+    }
+    for (int i = 0; i < n; ++i) {
         if (a[i] != b[i]) {
             return false;
         }
