@@ -5,29 +5,18 @@ public:
     int removeDuplicates(vector<int>& nums) {
 		constexpr int MAX_NUM_DUPLICATES = 2;
 		int n = nums.size();
+        int count = MAX_NUM_DUPLICATES;
 		if (n <= MAX_NUM_DUPLICATES) {
 			return n;
 		}
-		/* i is the slow ptr and j is the fast ptr */
-		auto i = nums.begin();
-		int count = 0, curr_num = *i;
-		for (auto j = i; j != nums.end(); ++j) {
-			if (*j == curr_num) { // duplicates
-				if (count == MAX_NUM_DUPLICATES) {
-					--i;
-					nums.erase(j);
-					j = i;
-				} else {
-					++count;
-					++i;
-				}
-			} else { // encounter new number
-				curr_num = *j;
-				count = 1;
-				++i;
-			}
-		} // for
-		return nums.size();
+        /* count is the index to the number that needs to be replaced */
+        for (int i = MAX_NUM_DUPLICATES; i < n; ++i) {
+            if (nums[count - MAX_NUM_DUPLICATES] != nums[i]) {
+                nums[count] = nums[i];
+                count++;
+            }
+        }
+		return count;
 	}
 };
 
@@ -44,8 +33,6 @@ void test2() {
 	vector<int> golden {0,0,1,1,2,3,3};
 	Solution soln;
 	int len = soln.removeDuplicates(input);
-	printArray(input);
-	cout << "len = " << len;
 	assert(isArrayEqual(input, golden, len));
 }
 
