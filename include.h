@@ -37,7 +37,6 @@ using namespace std;
 //    return nullptr;
 //}();
 
-/* some commonly defined structs */
 /* definition for singly linked list */
 struct ListNode {
     int val;
@@ -60,6 +59,16 @@ bool isListNodeEqual(ListNode *a, ListNode *b) {
     } // while
     return true;
 }
+
+/* definition for TreeNode */
+struct TreeNode {
+    int val;
+    TreeNode *left;
+    TreeNode *right;
+    TreeNode() : val(0), left(nullptr), right(nullptr) {}
+    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+};
 
 /* some common utility functions */
 /* check if the two array are identical */
