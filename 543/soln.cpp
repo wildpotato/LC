@@ -15,11 +15,8 @@ class Solution {
 public:
     int maxLen = 0;
     int diameterOfBinaryTree(TreeNode* root) {
-        int root_diameter = 0;
-        if (root != nullptr) {
-            root_diameter = getHeight(root->left) + getHeight(root->right);
-        }
-        return max(maxLen, root_diameter);
+        getHeight(root);
+        return maxLen;
     }
 
     /* calculates height of root and updates max diameter */
