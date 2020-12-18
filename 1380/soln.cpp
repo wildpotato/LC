@@ -5,36 +5,27 @@ public:
     vector<int> luckyNumbers (vector<vector<int>>& matrix) {
         vector<int> ret;
         int row_size = matrix.size();
-        if (row_size == 0) {
-            return ret;
-        }
-        int col_size = matrix.size();
-        vector<int> row_min_idx;
-        vector<int> col_max_idx;
+        int col_size = matrix[0].size();
         for (int i = 0; i < row_size; ++i) {
-            int min_in_row = matrix[i][0];
-            int min_idx = 0;
+            int min = INT_MAX;
+            int min_idx = -1;
             for (int j = 0; j < col_size; ++j) {
-                if (matrix[i][j] < min_in_row) {
-                    min_in_row = matrix[i][j];
+                if (matrix[i][j] < min) {
+                    min = matrix[i][j];
                     min_idx = j;
-                } // if
-            } // for
-            row_min_idx.push_back(min_idx);
+                }
+            }
+            int max = INT_MIN;
+            for (int k = 0; k < row_size; ++k) {
+                if (matrix[k][min_idx] > max) {
+                    max = matrix[k][min_idx];
+                }
+            }
+            if (max == min) {
+                ret.push_back(min);
+            }
         } // for
-
-        for (int j = 0; j < col_size; ++j) {
-            int max_in_col = matrix[0][j];
-            int max_idx = 0;
-            for (int i = 0; i < row_size; ++i) {
-                if (matrix[i][j] > max_in_col) {
-                    max_in_col = matrix[i][j];
-                    max_idx = i;
-                } // if
-            } // for
-            col_max_idx.push_back(max_idx);
-        } // for
-
+        return ret;
     }
 };
 
