@@ -85,6 +85,26 @@ bool isArrayEqual(vector<T> a, vector<T> b) {
     return true;
 }
 
+template <typename T>
+bool isArrayEqual(vector<vector<T>> a, vector<vector<T>> b) {
+    if (a.size() != b.size()) { // check number of rows
+        return false;
+    }
+	for (int i = 0; i < a.size(); ++i) { // check size of each row
+		if (a[i].size() != b[i].size()) {
+			return false;
+		}
+	}
+    for (int i = 0; i < a.size(); ++i) {
+        for (int j = 0; j < a[0].size(); ++j) {
+			if (a[i][j] != b[i][j]) {
+        		return false;
+        	}
+		} // inner for
+    } // outer for
+    return true;
+}
+
 /* check if the first n elements of the two arrays are the same */
 template <typename T>
 bool isArrayEqual(vector<T> a, vector<T> b, int n) {
@@ -105,6 +125,18 @@ void printArray(vector<T> a) {
     cout << "---------------------------------------------\n";
     for (size_t i = 0; i < a.size(); ++i) {
         cout << a[i] << " ";
+    }
+    cout << "\n---------------------------------------------";
+}
+
+template <typename T>
+void printArray(vector<vector<T>> a) {
+    cout << "---------------------------------------------\n";
+    for (size_t i = 0; i < a.size(); ++i) {
+		for (size_t j = 0; j < a[0].size(); ++j) {
+        	cout << a[i][j] << " ";
+		}
+		cout << "\n";
     }
     cout << "\n---------------------------------------------";
 }
