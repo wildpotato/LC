@@ -71,7 +71,7 @@ struct TreeNode {
 };
 
 /* some common utility functions */
-/* check if the two array are identical */
+/* check if two arrays are identical in length and content */
 template <typename T>
 bool isArrayEqual(vector<T> a, vector<T> b) {
     if (a.size() != b.size()) {
@@ -85,7 +85,7 @@ bool isArrayEqual(vector<T> a, vector<T> b) {
     return true;
 }
 
-/* check if the first n elements of the two array are equal */
+/* check if the first n elements of the two arrays are the same */
 template <typename T>
 bool isArrayEqual(vector<T> a, vector<T> b, int n) {
     if (n < 0 || a.size() < n || b.size() < n) {
@@ -99,6 +99,7 @@ bool isArrayEqual(vector<T> a, vector<T> b, int n) {
     return true;
 }
 
+/* print out array elements in a line for debugging */
 template <typename T>
 void printArray(vector<T> a) {
     cout << "---------------------------------------------\n";
