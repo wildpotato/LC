@@ -15,6 +15,9 @@
 /* STL algorithms such as sort(), etc */
 #include <algorithm>
 
+/* STL utilities such as make_pair(), move(), swap() */
+#include <utility>
+
 /* limits such as INT_MIN, INT_MAX, etc */
 #include <climits>
 
