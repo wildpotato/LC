@@ -73,6 +73,21 @@ struct TreeNode {
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
+/* helper function for isBST */
+bool isBST_helper(struct TreeNode *node, int min, int max) {
+	if (node == nullptr)
+		return true;
+	if (node->val < min || node->val > max)
+		return false;
+	return isBST_helper(node->left, min, node->val) &&
+		isBST_helper(node->right, node->val + 1, max);
+}
+
+/* check if a given tree is a valid BST efficiently */
+bool isBST(struct TreeNode *node) {
+	return isBST_helper(node, INT_MIN, INT_MAX);
+}
+
 /* some common utility functions */
 /* check if two arrays are identical in length and content */
 template <typename T>
