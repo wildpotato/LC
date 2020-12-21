@@ -27,7 +27,6 @@ public:
 					if (!exposed) {
 						markDFS(board, i, j);
 					}
-					exposed = true;
 				} // if cell is unvisited 'O'
 			} // inner for
 		} // outer for
