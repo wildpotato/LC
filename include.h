@@ -104,7 +104,7 @@ bool isArrayEqual(vector<T> a, vector<T> b) {
 }
 
 template <typename T>
-bool isArrayEqual(vector<vector<T>> a, vector<vector<T>> b) {
+bool isArrayEqual(vector<vector<T> > a, vector<vector<T> > b) {
     if (a.size() != b.size()) { // check number of rows
         return false;
     }
@@ -148,7 +148,7 @@ void printArray(vector<T> a) {
 }
 
 template <typename T>
-void printArray(vector<vector<T>> a) {
+void printArray(vector<vector<T> > a) {
     cout << "---------------------------------------------\n";
     for (size_t i = 0; i < a.size(); ++i) {
 		for (size_t j = 0; j < a[0].size(); ++j) {
