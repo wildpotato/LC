@@ -6,7 +6,8 @@ struct Node {
 	Node *prev;
 	Node *next;
 	Node() : key(-1), val(-1), prev(nullptr), next(nullptr) {}
-}
+    Node(int key, int val) : key(key), val(val), prev(nullptr), next(nullptr) {}
+};
 
 class LRUCache {
 public:
@@ -18,19 +19,26 @@ public:
     int get(int key) {
 		int ret = -1;
 		auto itr = hash_map.find(key);
-		if (itr == NULL) {
+		if (itr == hash_map.end()) {
 			return ret;
 		}
-		removeNode(itr.second);
-		addNode(itr.second);
-		return itr.second;
+		removeNode(itr->second);
+		addNode(itr->second);
+		return itr->second->val;
     }
     void put(int key, int value) {
 		auto itr = hash_map.find(key);
-		if (itr == NULL) {
-			itr
-		}
-
+		if (itr != hash_map.end()) {
+			removeNode(itr->second);
+            addNode(itr->second);
+		} else {
+            if (size == capacity) {
+                removeNode(tail->prev);
+                size--;
+            }
+            addNode(new Node(key, value));
+            ++size;
+        }
     }
 private:
 	/* add node to head */
