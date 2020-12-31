@@ -12,7 +12,7 @@ struct Node {
 class LRUCache {
 public:
     LRUCache(int capacity) {
-		capacity = capacity;
+		cache_capacity = capacity;
 		head->next = tail;
 		tail->prev = head;
     }
@@ -32,7 +32,7 @@ public:
 			removeNode(itr->second);
             addNode(itr->second);
 		} else {
-            if (size == capacity) {
+            if (size == cache_capacity) {
                 removeNode(tail->prev);
                 size--;
             }
@@ -44,7 +44,7 @@ public:
     /* for debugging purposes */
     void showCurrentInfo() {
         cout << "----------------------------------------------\n";
-        cout << "Cache capacity = " << capacity << "\n";
+        cout << "Cache capacity = " << cache_capacity << "\n";
         cout << "Current cache size = " << size << "\n";
         cout << "Show current hash map:\n";
         for (auto itr = hash_map.begin(); itr != hash_map.end(); ++itr) {
@@ -74,7 +74,7 @@ private:
 	Node *head = new Node();
 	Node *tail = new Node();
 	int size = 0;
-	int capacity = 0;
+	int cache_capacity = 0;
 };
 
 /**
