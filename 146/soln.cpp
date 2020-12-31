@@ -40,6 +40,23 @@ public:
             ++size;
         }
     }
+
+    /* for debugging purposes */
+    void showCurrentInfo() {
+        cout << "----------------------------------------------\n";
+        cout << "Cache capacity = " << capacity << "\n";
+        cout << "Current cache size = " << size << "\n";
+        cout << "Show current hash map:\n";
+        for (auto itr = hash_map.begin(); itr != hash_map.end(); ++itr) {
+            cout << "key=" << itr->first << " val=" << itr->second->val << "\n";
+        }
+        cout << "Show current doubly liniked list:\n";
+        for (Node *ptr = head; ptr != tail; ptr = ptr->next) {
+            cout << "key=" << ptr->key << " val=" << ptr->val << "\n";
+        }
+        cout << "----------------------------------------------\n";
+    }
+
 private:
 	/* add node to head */
 	void addNode(Node *node) {
@@ -66,3 +83,25 @@ private:
  * int param_1 = obj->get(key);
  * obj->put(key,value);
  */
+void test() {
+    LRUCache *obj = new LRUCache(2);
+    obj->showCurrentInfo();
+    obj->put(1,1);
+    obj->showCurrentInfo();
+    obj->put(2,2);
+    obj->showCurrentInfo();
+    assert(obj->get(1) == 1);
+    obj->showCurrentInfo();
+    obj->put(3,3);
+    assert(obj->get(2) == -1);
+    obj->put(4,4);
+    assert(obj->get(1) == -1);
+    assert(obj->get(3) == 3);
+    assert(obj->get(4) == 4);
+}
+
+int main() {
+    test();
+    cout << "Successful\n";
+    return 0;
+}
