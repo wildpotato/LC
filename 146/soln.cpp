@@ -28,15 +28,24 @@ public:
     }
     void put(int key, int value) {
 		auto itr = hash_map.find(key);
+		Node *toAdd = nullptr;
+		Node *toDelete = nullptr;
 		if (itr != hash_map.end()) {
-			removeNode(itr->second);
-            addNode(itr->second);
+			toDelete = itr->second;
+			toAdd = new Node(key, value);
+			hash_map[key] = toAdd;
+			removeNode(toDelete);
+            addNode(toAdd);
 		} else {
             if (size == cache_capacity) {
-                removeNode(tail->prev);
+				toDelete = tail->prev;
+                removeNode(toDelete);
+				hash_map.erase(toDelete->key);
                 size--;
             }
-            addNode(new Node(key, value));
+			toAdd = new Node(key, value);
+            addNode(toAdd);
+			hash_map[key] = toAdd;
             ++size;
         }
     }
@@ -47,11 +56,17 @@ public:
         cout << "Cache capacity = " << cache_capacity << "\n";
         cout << "Current cache size = " << size << "\n";
         cout << "Show current hash map:\n";
-        for (auto itr = hash_map.begin(); itr != hash_map.end(); ++itr) {
-            cout << "key=" << itr->first << " val=" << itr->second->val << "\n";
-        }
+		auto itr = hash_map.begin();
+		if (itr == hash_map.end()) {
+			cout << "(empty)\n";
+		} else {
+        	for (; itr != hash_map.end(); ++itr) {
+        	    cout << "key=" << itr->first << " val=" << itr->second->val << "\n";
+        	}
+		}
         cout << "Show current doubly liniked list:\n";
-        for (Node *ptr = head; ptr != tail; ptr = ptr->next) {
+        Node *ptr = head;
+		for (ptr = ptr->next; ptr != tail; ptr = ptr->next) {
             cout << "key=" << ptr->key << " val=" << ptr->val << "\n";
         }
         cout << "----------------------------------------------\n";
@@ -83,7 +98,7 @@ private:
  * int param_1 = obj->get(key);
  * obj->put(key,value);
  */
-void test() {
+void test1() {
     LRUCache *obj = new LRUCache(2);
     obj->showCurrentInfo();
     obj->put(1,1);
@@ -100,8 +115,25 @@ void test() {
     assert(obj->get(4) == 4);
 }
 
+void test2() {
+	LRUCache *obj = new LRUCache(2);
+    obj->showCurrentInfo();
+	obj->put(2,1);
+    obj->showCurrentInfo();
+	obj->put(2,2);
+    obj->showCurrentInfo();
+	assert(obj->get(2) == 2);
+    obj->showCurrentInfo();
+	obj->put(1,1);
+    obj->showCurrentInfo();
+	obj->put(4,1);
+    obj->showCurrentInfo();
+	assert(obj->get(2) == -1);
+}
+
 int main() {
-    test();
+    test1();
+	test2();
     cout << "Successful\n";
     return 0;
 }
