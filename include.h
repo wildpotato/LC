@@ -12,8 +12,11 @@
 #include <queue>
 #include <map>
 
-/* STL algorithms such as sort(), etc */
+/* STL algorithms such as sort(), reverse(), etc */
 #include <algorithm>
+
+/* C++ iterator library, contains back_inserter, etc */
+#include <iterator>
 
 /* STL utilities such as make_pair(), move(), swap() */
 #include <utility>
@@ -21,10 +24,10 @@
 /* limits such as INT_MIN, INT_MAX, etc */
 #include <climits>
 
-/* types such as isdigit, isalphanumeric, etc */
+/* types such as isdigit(), isalnum(), etc */
 #include <cctype>
 
-/* some functions such as iota, accumulate, etc */
+/* some functions such as iota(), accumulate(), etc */
 #include <numeric>
 
 /* use std namespace so we don't need to type std:: */
@@ -157,4 +160,25 @@ void printArray(vector<vector<T> > a) {
 		cout << "\n";
     }
     cout << "\n---------------------------------------------";
+}
+
+template <typename T>
+void printStack(stack<T> stk) {
+	vector<T> stk_vec = vector<T>();
+	while (!stk.empty()) {
+		stk_vec.push_back(stk.top());
+		stk.pop();
+	}
+	reverse(stk_vec.begin(), stk_vec.end());
+    cout << "\n---------------------------------------------\n";
+	cout << "printing stack from left (top) to right (bottom)\n";
+	for (const auto &ele : stk_vec) {
+		cout << ele << " ";
+	}
+    cout << "\n---------------------------------------------";
+}
+
+template <typename T>
+void printNotEqual(const T &a, const T &b) {
+	cout << "[Discrepancy] " << a << " != " << b << endl;
 }
