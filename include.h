@@ -96,10 +96,12 @@ bool isBST(struct TreeNode *node) {
 template <typename T>
 bool isArrayEqual(vector<T> a, vector<T> b) {
     if (a.size() != b.size()) {
+		cout << "size: " << a.size() << "!=" << b.size() << "\n";
         return false;
     }
     for (int i = 0; i < a.size(); ++i) {
         if (a[i] != b[i]) {
+			cout << "element: " << a[i] << "!=" << b[i] << "\n";
             return false;
         }
     }
