@@ -43,6 +43,12 @@ using namespace std;
 //    return nullptr;
 //}();
 
+/* template function for printing not equal */
+template <typename T>
+void printNotEqual (const T &a, const T &b) {
+	cout << "[Discrepancy] " << a << " != " << b << endl;
+}
+
 /* definition for singly linked list */
 struct ListNode {
     int val;
@@ -52,12 +58,32 @@ struct ListNode {
     ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
 
-bool isListNodeEqual(ListNode *a, ListNode *b) {
+void printListNode (ListNode *l) {
+    while (l) {
+        cout << l->val << " ";
+        l = l->next;
+    }
+    cout << "\n";
+}
+
+void printListNode (ListNode *a, ListNode *b) {
+    cout << "---------------------------------------------\n";
+    cout << "1st list: ";
+    printListNode(a);
+    cout << "2nd list: ";
+    printListNode(b);
+    cout << "---------------------------------------------\n";
+}
+
+bool isListNodeEqual (ListNode *a, ListNode *b) {
     while (a || b) {
         if (a == nullptr || b == nullptr) {
+            cout << "Length of ListNode not equal\n";
             return false;
         }
         if (a->val != b->val) {
+            printListNode(a, b);
+            printNotEqual(a->val, b->val);
             return false;
         }
         a = a->next;
@@ -77,7 +103,7 @@ struct TreeNode {
 };
 
 /* helper function for isBST */
-bool isBST_helper(struct TreeNode *node, int min, int max) {
+bool isBST_helper (struct TreeNode *node, int min, int max) {
 	if (node == nullptr)
 		return true;
 	if (node->val < min || node->val > max)
@@ -87,14 +113,14 @@ bool isBST_helper(struct TreeNode *node, int min, int max) {
 }
 
 /* check if a given tree is a valid BST efficiently */
-bool isBST(struct TreeNode *node) {
+bool isBST (struct TreeNode *node) {
 	return isBST_helper(node, INT_MIN, INT_MAX);
 }
 
 /* some common utility functions */
 /* check if two arrays are identical in length and content */
 template <typename T>
-bool isArrayEqual(vector<T> a, vector<T> b) {
+bool isArrayEqual (vector<T> a, vector<T> b) {
     if (a.size() != b.size()) {
 		cout << "size: " << a.size() << "!=" << b.size() << "\n";
         return false;
@@ -109,7 +135,7 @@ bool isArrayEqual(vector<T> a, vector<T> b) {
 }
 
 template <typename T>
-bool isArrayEqual(vector<vector<T> > a, vector<vector<T> > b) {
+bool isArrayEqual (vector<vector<T> > a, vector<vector<T> > b) {
     if (a.size() != b.size()) { // check number of rows
         return false;
     }
@@ -130,7 +156,7 @@ bool isArrayEqual(vector<vector<T> > a, vector<vector<T> > b) {
 
 /* check if the first n elements of the two arrays are the same */
 template <typename T>
-bool isArrayEqual(vector<T> a, vector<T> b, int n) {
+bool isArrayEqual (vector<T> a, vector<T> b, int n) {
     if (n < 0 || a.size() < n || b.size() < n) {
         return false;
     }
@@ -144,7 +170,7 @@ bool isArrayEqual(vector<T> a, vector<T> b, int n) {
 
 /* print out array elements in a line for debugging */
 template <typename T>
-void printArray(vector<T> a) {
+void printArray (vector<T> a) {
     cout << "---------------------------------------------\n";
     for (size_t i = 0; i < a.size(); ++i) {
         cout << a[i] << " ";
@@ -153,7 +179,7 @@ void printArray(vector<T> a) {
 }
 
 template <typename T>
-void printArray(vector<vector<T> > a) {
+void printArray (vector<vector<T> > a) {
     cout << "---------------------------------------------\n";
     for (size_t i = 0; i < a.size(); ++i) {
 		for (size_t j = 0; j < a[0].size(); ++j) {
@@ -165,7 +191,7 @@ void printArray(vector<vector<T> > a) {
 }
 
 template <typename T>
-void printStack(stack<T> stk) {
+void printStack (stack<T> stk) {
 	vector<T> stk_vec = vector<T>();
 	while (!stk.empty()) {
 		stk_vec.push_back(stk.top());
@@ -180,7 +206,3 @@ void printStack(stack<T> stk) {
     cout << "\n---------------------------------------------";
 }
 
-template <typename T>
-void printNotEqual(const T &a, const T &b) {
-	cout << "[Discrepancy] " << a << " != " << b << endl;
-}
