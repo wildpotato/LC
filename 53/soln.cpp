@@ -1,3 +1,10 @@
+/*
+ * This is a classical sliding window problem where
+ * O(n) solution may be achieved via the sliding window
+ * technique where typical brute force solution would
+ * be O(n^2).
+ *
+ */
 #include "../include.h"
 
 class Solution {
