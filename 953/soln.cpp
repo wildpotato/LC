@@ -50,14 +50,14 @@ void test2() {
     vector<string> words {"word","world","row"};
     string order = "worldabcefghijkmnpqstuvxyz";
     Solution soln;
-    assert(soln.isAlienSorted(words, order));
+    assert(!soln.isAlienSorted(words, order));
 }
 
 void test3() {
     vector<string> words {"apple","app"};
     string order = "abcdefghijklmnopqrstuvwxyz";
     Solution soln;
-    assert(soln.isAlienSorted(words, order));
+    assert(!soln.isAlienSorted(words, order));
 }
 
 int main() {
