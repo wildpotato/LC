@@ -30,6 +30,9 @@
 /* some functions such as iota(), accumulate(), etc */
 #include <numeric>
 
+/* math functions such as pow(), sqrt(), etc */
+#include <cmath>
+
 /* use std namespace so we don't need to type std:: */
 using namespace std;
 
