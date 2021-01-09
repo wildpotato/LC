@@ -29,15 +29,38 @@ public:
     }; // GreaterEuclideanDistance
 
     vector<vector<int>> kClosest(vector<vector<int>>& points, int K) {
-        priority_queue<vector<int>, vector<int>, GreaterEuclideanDistance(vector<int>, vector<int>)> closest_points;
+        priority_queue<vector<int>, vector<vector<int>>, GreaterEuclideanDistance> closest_points(points.begin(), points.end());
         vector<vector<int>> ret (K);
-        for (const vector<int> &point : points) {
-            closest_points.push(point);
-        }
         for (int i = 0; i < K; ++i) {
-            ret.push_back(closest_points.top());
+			ret[i] = closest_points.top();
             closest_points.pop();
         }
         return ret;
     }
 };
+
+void test1() {
+	vector<vector<int>> points {{1, 3}, {2, -2}};
+	int K = 1;
+	vector<vector<int>> output {{2, -2}};
+	Solution soln;
+	vector<vector<int>> ret = soln.kClosest(points, K);
+	assert(isArrayEqual(ret, output));
+}
+
+void test2() {
+	vector<vector<int>> points{{3,3},{5,-1},{-2,4}};
+	int K = 2;
+	vector<vector<int>> output1{{3,3},{-2,4}};
+	vector<vector<int>> output2{{-2,4},{3,3}};
+	Solution soln;
+	vector<vector<int>> ret = soln.kClosest(points, K);
+	assert(isArrayEqual(ret, output1) || isArrayEqual(ret, output2));
+}
+
+int main() {
+	test1();
+	test2();
+	cout << "Successful\n";
+	return 0;
+}
