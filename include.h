@@ -2,6 +2,7 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
+#include <cstring> // strcmp()
 #include <cassert>
 
 /* STL containers */
