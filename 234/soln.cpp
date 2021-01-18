@@ -16,11 +16,15 @@ public:
         if (head == nullptr) return true;
         ListNode *fast = head;
         ListNode *slow = head;
+        // Use two pointers to locate the mid point of the list
         while (fast->next != nullptr && fast->next->next != nullptr) {
             fast = fast->next->next;
             slow = slow->next;
         }
+        // second half starts at the next node of the mid point found
+        // we reverse it so it is essentially starting backwards
         ListNode *half = reverse(slow->next);
+        // use beg as begining of the list, assign it to head
         ListNode *beg = head;
         while (half != nullptr) {
             if (half->val != beg->val) {
@@ -29,9 +33,11 @@ public:
             half = half->next;
             beg = beg->next;
         }
+        // the list reads the same forward as backward, return true
         return true;
     }
 
+    // reverse linked list is itself another LC problem
     ListNode *reverse(ListNode *head) {
         ListNode *prev = nullptr;
         while (head != nullptr) {
