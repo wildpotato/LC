@@ -2,6 +2,7 @@
 
 class MinStack {
 public:
+    // store both the value and min associated onto the stack
     struct Data {
 	Data(int _v, int _m) : val(_v), min(_m) {}
 	int val;
