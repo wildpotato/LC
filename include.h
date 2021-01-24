@@ -83,6 +83,7 @@ bool isListNodeEqual (ListNode *a, ListNode *b) {
     while (a || b) {
         if (a == nullptr || b == nullptr) {
             cout << "Length of ListNode not equal\n";
+            printListNode(a, b);
             return false;
         }
         if (a->val != b->val) {
