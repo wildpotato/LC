@@ -12,6 +12,7 @@
 #include <stack>
 #include <queue>
 #include <map>
+#include <set>
 
 /* STL algorithms such as sort(), reverse(), etc */
 #include <algorithm>
@@ -63,8 +64,12 @@ struct ListNode {
 };
 
 void printListNode (ListNode *l) {
+    if (l == nullptr) {
+        cout << "(Empty)\n";
+        return;
+    }
     while (l) {
-        cout << l->val << " ";
+        cout << l->val << "->";
         l = l->next;
     }
     cout << "\n";
@@ -198,6 +203,10 @@ void printArray (vector<vector<T> > a) {
 template <typename T>
 void printStack (stack<T> stk) {
 	vector<T> stk_vec = vector<T>();
+    if (stk.empty()) {
+        cout << "(Empty)\n";
+        return;
+    }
 	while (!stk.empty()) {
 		stk_vec.push_back(stk.top());
 		stk.pop();
