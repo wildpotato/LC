@@ -128,6 +128,45 @@ bool isBST (struct TreeNode *node) {
 }
 
 /* some common utility functions */
+
+/* print out array elements in a line for debugging */
+template <typename T>
+void printArray (vector<T> a) {
+    cout << "---------------------------------------------\n";
+    for (size_t i = 0; i < a.size(); ++i) {
+        cout << a[i] << " ";
+    }
+    cout << "\n---------------------------------------------\n";
+}
+
+template<typename T>
+void printArray(vector<T> a, vector<T> b) {
+    cout << "---------------------------------------------\n";
+    cout << "1st array: ";
+    for (size_t i = 0; i < a.size(); ++i) {
+        cout << a[i] << " ";
+    }
+    cout << "\n";
+    cout << "2nd array: ";
+    for (size_t i = 0; i < a.size(); ++i) {
+        cout << b[i] << " ";
+    }
+    cout << "\n";
+    cout << "---------------------------------------------\n";
+}
+
+template <typename T>
+void printArray (vector<vector<T> > a) {
+    cout << "---------------------------------------------\n";
+    for (size_t i = 0; i < a.size(); ++i) {
+		for (size_t j = 0; j < a[0].size(); ++j) {
+        	cout << a[i][j] << " ";
+		}
+		cout << "\n";
+    }
+    cout << "\n---------------------------------------------";
+}
+
 /* check if two arrays are identical in length and content */
 template <typename T>
 bool isArrayEqual (vector<T> a, vector<T> b) {
@@ -138,6 +177,7 @@ bool isArrayEqual (vector<T> a, vector<T> b) {
     for (int i = 0; i < a.size(); ++i) {
         if (a[i] != b[i]) {
 			cout << "element: " << a[i] << "!=" << b[i] << "\n";
+            printArray(a, b);
             return false;
         }
     }
@@ -176,28 +216,6 @@ bool isArrayEqual (vector<T> a, vector<T> b, int n) {
         }
     }
     return true;
-}
-
-/* print out array elements in a line for debugging */
-template <typename T>
-void printArray (vector<T> a) {
-    cout << "---------------------------------------------\n";
-    for (size_t i = 0; i < a.size(); ++i) {
-        cout << a[i] << " ";
-    }
-    cout << "\n---------------------------------------------";
-}
-
-template <typename T>
-void printArray (vector<vector<T> > a) {
-    cout << "---------------------------------------------\n";
-    for (size_t i = 0; i < a.size(); ++i) {
-		for (size_t j = 0; j < a[0].size(); ++j) {
-        	cout << a[i][j] << " ";
-		}
-		cout << "\n";
-    }
-    cout << "\n---------------------------------------------";
 }
 
 template <typename T>
