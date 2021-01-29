@@ -238,3 +238,14 @@ void printStack (stack<T> stk) {
     cout << "\n---------------------------------------------";
 }
 
+template <typename T>
+void printMap (unordered_map<T, T> hash_map) {
+    cout << "---------------------------------------------\n";
+    if (hash_map.size() == 0) {
+        cout << "(Empty map)\n";
+    }
+    for (auto itr : hash_map) {
+        cout << "map[\"" << itr.first << "\"]" << " = " << itr.second << endl;
+    }
+    cout << "---------------------------------------------\n";
+}
