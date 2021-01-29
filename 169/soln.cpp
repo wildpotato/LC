@@ -4,7 +4,8 @@ class Solution {
 public:
     int majorityElement(vector<int>& nums) {
         unordered_map<int, int> hash_table;
-        for (int i = 0; i < nums.size(); ++i) {
+        int n = nums.size();
+        for (int i = 0; i < n; ++i) {
             auto itr = hash_table.find(nums[i]);
             if (itr != hash_table.end()) {
                 itr->second++;
@@ -13,13 +14,11 @@ public:
             }
         }
         //printMap(hash_table);
-        auto beg = hash_table.begin();
-        int maxEle = beg->first;
-        int maxOccur = beg->second;
+        int maxEle = INT_MIN;
         for (auto itr : hash_table) {
-            if (itr.second > maxOccur) {
+            if (itr.second > n / 2) {
                 maxEle = itr.first;
-                maxOccur = itr.second;
+                break;
             }
         }
         return maxEle;
