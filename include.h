@@ -102,31 +102,6 @@ bool isListNodeEqual (ListNode *a, ListNode *b) {
     return true;
 }
 
-/* definition for TreeNode */
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode() : val(0), left(nullptr), right(nullptr) {}
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
-};
-
-/* helper function for isBST */
-bool isBST_helper (struct TreeNode *node, int min, int max) {
-	if (node == nullptr)
-		return true;
-	if (node->val < min || node->val > max)
-		return false;
-	return isBST_helper(node->left, min, node->val) &&
-		isBST_helper(node->right, node->val + 1, max);
-}
-
-/* check if a given tree is a valid BST efficiently */
-bool isBST (struct TreeNode *node) {
-	return isBST_helper(node, INT_MIN, INT_MAX);
-}
-
 /* some common utility functions */
 
 /* print out array elements in a line for debugging */
@@ -248,4 +223,36 @@ void printMap (unordered_map<T, T> hash_map) {
         cout << "map[\"" << itr.first << "\"]" << " = " << itr.second << endl;
     }
     cout << "---------------------------------------------\n";
+}
+
+/* definition for TreeNode */
+struct TreeNode {
+    int val;
+    TreeNode *left;
+    TreeNode *right;
+    TreeNode() : val(0), left(nullptr), right(nullptr) {}
+    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+};
+
+/* helper function for isBST */
+bool isBST_helper (struct TreeNode *node, int min, int max) {
+	if (node == nullptr)
+		return true;
+	if (node->val < min || node->val > max)
+		return false;
+	return isBST_helper(node->left, min, node->val) &&
+		isBST_helper(node->right, node->val + 1, max);
+}
+
+/* check if a given tree is a valid BST efficiently */
+bool isBST (struct TreeNode *node) {
+	return isBST_helper(node, INT_MIN, INT_MAX);
+}
+
+bool isTreeNodeEqual(TreeNode *a, TreeNode *b) {
+    if (a == nullptr and b == nullptr) return true;
+    if (a == nullptr or b == nullptr) return false;
+    if (a->val != b->val) return false;
+    return isTreeNodeEqual(a->right, b->right) and isTreeNodeEqual(a->left, b->left);
 }
