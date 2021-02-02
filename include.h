@@ -167,15 +167,15 @@ bool isArrayEqual (vector<vector<T> > a, vector<vector<T> > b) {
     }
 	for (int i = 0; i < a.size(); ++i) { // check size of each row
 		if (a[i].size() != b[i].size()) {
-		    cout << "size: " << a.size() << "!=" << b.size() << "\n";
+		    cout << "size: " << a[i].size() << "!=" << b[i].size() << "\n";
 			return false;
 		}
 	}
     for (int i = 0; i < a.size(); ++i) {
         for (int j = 0; j < a[0].size(); ++j) {
 			if (a[i][j] != b[i][j]) {
-			    cout << "element: " << a[i] << "!=" << b[i] << "\n";
-                printArray(a, b);
+			    cout << "element: " << a[i][j] << "!=" << b[i][j] << "\n";
+                printArray(a[i], b[i]);
         		return false;
         	}
 		} // inner for
