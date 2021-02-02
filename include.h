@@ -162,16 +162,20 @@ bool isArrayEqual (vector<T> a, vector<T> b) {
 template <typename T>
 bool isArrayEqual (vector<vector<T> > a, vector<vector<T> > b) {
     if (a.size() != b.size()) { // check number of rows
+		cout << "size: " << a.size() << "!=" << b.size() << "\n";
         return false;
     }
 	for (int i = 0; i < a.size(); ++i) { // check size of each row
 		if (a[i].size() != b[i].size()) {
+		    cout << "size: " << a.size() << "!=" << b.size() << "\n";
 			return false;
 		}
 	}
     for (int i = 0; i < a.size(); ++i) {
         for (int j = 0; j < a[0].size(); ++j) {
 			if (a[i][j] != b[i][j]) {
+			    cout << "element: " << a[i] << "!=" << b[i] << "\n";
+                printArray(a, b);
         		return false;
         	}
 		} // inner for
