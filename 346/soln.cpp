@@ -14,11 +14,12 @@ public:
         }
         q.push(val);
         sum += val;
+        return (double) sum / double(q.size());
     }
 private:
     queue<int> q;
-    int sz;
-    int sum;
+    int sz = 0;  // somehow if we don't initialize to zero it won't pass Leetcode
+    int sum = 0; // somehow if we don't initialize to zero it won't pass Leetcode
 };
 
 /**
@@ -26,12 +27,13 @@ private:
  * MovingAverage* obj = new MovingAverage(size);
  * double param_1 = obj->next(val);
  */
+
 void test() {
     MovingAverage *ma = new MovingAverage(3);
-    assert(ma->next(1) == 1);
-    assert(ma->next(10) == 5.5);
-    assert(ma->next(3) == 4.66667);
-    assert(ma->next(5) == 6.0);
+    assert(isEqual(ma->next(1), 1.00000));
+    assert(isEqual(ma->next(10), 5.50000));
+    assert(isEqual(ma->next(3), 4.66667));
+    assert(isEqual(ma->next(5), 6.00000));
 }
 
 int main() {
