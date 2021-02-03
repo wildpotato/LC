@@ -48,6 +48,11 @@ using namespace std;
 //    return nullptr;
 //}();
 
+template <typename T>
+bool isEqual(T a, T b, double tolerance=1e-6) {
+    return ((double)(a) - (double)(b) < tolerance);
+}
+
 /* template function for printing not equal */
 template <typename T>
 void printNotEqual (const T &a, const T &b) {
