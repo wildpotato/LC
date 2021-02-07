@@ -1,7 +1,0 @@
-soln.cpp:11:21: warning: range-based for loop is a C++11 extension [-Wc++11-extensions]
-                for (const char c : s) {
-                                  ^
-soln.cpp:16:21: warning: range-based for loop is a C++11 extension [-Wc++11-extensions]
-                for (const char c : s) {
-                                  ^
-2 warnings generated.
