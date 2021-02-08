@@ -20,6 +20,9 @@
 /* C++ iterator library, contains back_inserter, etc */
 #include <iterator>
 
+/* built-in comparisons such as std::less(), std::greater() and more */
+#include <functional>
+
 /* STL utilities such as make_pair(), move(), swap() */
 #include <utility>
 
