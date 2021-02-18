@@ -1,5 +1,11 @@
 #include "../include.h"
 
+/*
+ * Maintain a window of size k and look for duplicates within the
+ * window. Note that this is not the fastest implementation available.
+ * Look up 4 ms solution for the fastest way possible.
+ *
+ */
 class Solution {
 public:
     bool containsNearbyDuplicate(vector<int>& nums, int k) {
